@@ -73,7 +73,7 @@ function Home() {
     </div>
   );
 }
-
+//The app section is the ONLY PART being rendered! This means I have to create all these separate things and then call them in the App function.
 function App() {
   return (
     <div>
