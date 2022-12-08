@@ -1,28 +1,21 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import "./App.css";
-
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <header>
+        <a href="#">Home</a> | <a href="#posts-index">All posts</a> | <a href="#posts-new">New post</a>
+      </header>
+
+      <div id="posts-new">
+        <h1>New post</h1>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 57)}>count is {count}</button>
-        <p>
-          MODIFY <code>src/App.jsx</code> and SAVE to test HMR
-        </p>
+
+      <div id="posts-index">
+        <h1>All posts</h1>
       </div>
-      <p className="read-the-docs">Fun Game - press until you get one million</p>
+
+      <footer>
+        <p>Copyright 20XX</p>
+      </footer>
     </div>
   );
 }
