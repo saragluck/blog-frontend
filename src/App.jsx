@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 
 function Header() {
@@ -31,44 +32,36 @@ function PostsNew() {
 
 function PostsIndex(props) {
   console.log(props);
+  return (
+    <div id="posts-index">
+      <h1>All of the Posts</h1>
+    </div>
+  );
 }
 function Footer() {
   return (
     <div>
       <footer>
-        <p>Copyright 2022</p>
+        <p>Copyright 2022 Almost 2023!</p>
       </footer>
     </div>
   );
 }
 
 function Home() {
-  const [posts, setPosts] = useState([
-    {
-      id: 1,
-      title: "My First Blog Post!",
-      body: "Hi, I'm the first blog post!",
-      image: "https://static.frame.work/aj192kv9jkobd4std75kia0vv100",
-    },
-    {
-      id: 2,
-      title: "My Second Blog Post!",
-      body: "Hi, I'm the second blog post bla bla bla bla bla bla bla",
-      image:
-        "https://cb2.scene7.com/is/image/CB2/WarnerTableLampShF16/$web_pdp_main_carousel_sm$/190905021327/warner-table-lamp.jpg",
-    },
-    {
-      id: 3,
-      title: "My Third Blog Post!",
-      body: "Hi, I'm the third blog post more bla bla bla bla bla bla bla",
-      image: "https://www.meijer.com/content/dam/meijer/product/0002/40/0005/98/0002400005988_1_A1C1_0600.png",
-    },
-  ]);
+  const [posts, setPosts] = useState([]);
+  const handleIndexPosts = () => {
+    console.log("Get the posts");
+    axios.get("http://localhost:3000/posts.json").then((response) => {
+      console.log(response.data);
+    });
+  };
 
   return (
     <div>
       <PostsNew />
       <PostsIndex posts={posts} />
+      <button onClick={handleIndexPosts}> Load Posts</button>
     </div>
   );
 }
