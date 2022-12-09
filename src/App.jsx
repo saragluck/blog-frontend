@@ -34,7 +34,14 @@ function PostsIndex(props) {
   console.log(props);
   return (
     <div id="posts-index">
-      <h1>All of the Posts</h1>
+      <h1>All Recipes!!</h1>
+      {props.posts.map((post) => (
+        <div key={post.id} className="posts">
+          <h2>{post.title}</h2>
+          <h4>{post.body}</h4>
+          <img src={post.image} alt="" />
+        </div>
+      ))}
     </div>
   );
 }
@@ -54,14 +61,15 @@ function Home() {
     console.log("Get the posts");
     axios.get("http://localhost:3000/posts.json").then((response) => {
       console.log(response.data);
+      setPosts(response.data);
     });
   };
 
   return (
     <div>
       <PostsNew />
-      <PostsIndex posts={posts} />
       <button onClick={handleIndexPosts}> Load Posts</button>
+      <PostsIndex posts={posts} />
     </div>
   );
 }
