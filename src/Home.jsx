@@ -3,18 +3,25 @@ import { useState, useEffect } from "react";
 import { PostsIndex } from "./PostsIndex";
 import { PostsNew } from "./PostsNew";
 import { Modal } from "./Modal";
+import { PostsShow } from "./PostsShow";
 
 export function Home() {
-  const [posts, setPosts] = useState([]);
+  // Below are all of my consts
+
+  const [posts, setPosts] = useState([]); //sets all posts
+  const [currentPost, setCurrentPost] = useState({}); //sets current post
+
   const [isPostsShowVisible, setIsPostsShowVisible] = useState(false);
+
   const handleShowPost = (post) => {
     setIsPostsShowVisible(true);
     setCurrentPost(post);
   };
+
   const handleHidePost = () => {
     setIsPostsShowVisible(false);
   };
-  const [currentPost, setCurrentPost] = useState({});
+
   const handleIndexPosts = () => {
     console.log("Get the posts");
     axios.get("http://localhost:3000/posts.json").then((response) => {
@@ -22,13 +29,15 @@ export function Home() {
       setPosts(response.data);
     });
   };
+
   useEffect(handleIndexPosts, []);
   return (
     <div>
       <PostsIndex posts={posts} onSelectPost={handleShowPost} />
       <Modal show={isPostsShowVisible} onClose={handleHidePost}>
-        <h2>{currentPost.title}</h2>
-        <h3>{currentPost.body}</h3>
+        {/* <h2>{currentPost.title}</h2>
+        <h3>{currentPost.body}</h3> */}
+        <PostsShow post={currentPost} />
       </Modal>
       <PostsNew />
       <PostsIndex posts={posts} />
