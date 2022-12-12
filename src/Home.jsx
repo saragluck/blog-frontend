@@ -2,6 +2,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { PostsIndex } from "./PostsIndex";
 import { PostsNew } from "./PostsNew";
+import { Modal } from "./Modal";
 
 export function Home() {
   const [posts, setPosts] = useState([]);
@@ -15,6 +16,9 @@ export function Home() {
   useEffect(handleIndexPosts, []);
   return (
     <div>
+      <Modal show={true}>
+        <p>Sample</p>
+      </Modal>
       <PostsNew />
       <PostsIndex posts={posts} />
     </div>
