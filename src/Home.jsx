@@ -6,6 +6,14 @@ import { Modal } from "./Modal";
 
 export function Home() {
   const [posts, setPosts] = useState([]);
+  const [isPostsShowVisible, setIsPostsShowVisible] = useState(false);
+  const handleShowPost = () => {
+    setIsPostsShowVisible(true);
+  };
+  const handleHidePost = () => {
+    setIsPostsShowVisible(false);
+  };
+
   const handleIndexPosts = () => {
     console.log("Get the posts");
     axios.get("http://localhost:3000/posts.json").then((response) => {
@@ -16,8 +24,9 @@ export function Home() {
   useEffect(handleIndexPosts, []);
   return (
     <div>
-      <Modal show={true}>
-        <p>Sample</p>
+      <button onClick={handleShowPost}>GIMME DAT MODAL!</button>
+      <Modal show={isPostsShowVisible} onClose={handleHidePost}>
+        Test
       </Modal>
       <PostsNew />
       <PostsIndex posts={posts} />
