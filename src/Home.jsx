@@ -5,6 +5,7 @@ import { PostsNew } from "./PostsNew";
 import { Modal } from "./Modal";
 import { PostsShow } from "./PostsShow";
 import { Signup } from "./Signup";
+import { Login } from "./Login";
 
 export function Home() {
   // Below are all of my consts
@@ -35,6 +36,7 @@ export function Home() {
   return (
     <div>
       <Signup />
+      <Login />
       <PostsNew />
       <PostsIndex posts={posts} onSelectPost={handleShowPost} />
       <Modal show={isPostsShowVisible} onClose={handleHidePost}>
