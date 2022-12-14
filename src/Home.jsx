@@ -4,6 +4,7 @@ import { PostsIndex } from "./PostsIndex";
 import { PostsNew } from "./PostsNew";
 import { Modal } from "./Modal";
 import { PostsShow } from "./PostsShow";
+import { Signup } from "./Signup";
 
 export function Home() {
   // Below are all of my consts
@@ -33,14 +34,14 @@ export function Home() {
   useEffect(handleIndexPosts, []);
   return (
     <div>
+      <Signup />
+      <PostsNew />
       <PostsIndex posts={posts} onSelectPost={handleShowPost} />
       <Modal show={isPostsShowVisible} onClose={handleHidePost}>
         {/* <h2>{currentPost.title}</h2>
         <h3>{currentPost.body}</h3> */}
         <PostsShow post={currentPost} />
       </Modal>
-      <PostsNew />
-      <PostsIndex posts={posts} />
     </div>
   );
 }

@@ -5,3 +5,9 @@
 html {
   scroll-behavior: smooth;
 }
+
+#root {
+  text-align: center;
+  background-image: url('./assets/morrocan-flower.png');
+}
+

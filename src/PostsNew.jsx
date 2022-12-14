@@ -12,7 +12,9 @@ export function PostsNew() {
         <div>
           Image: <input type="text" />
         </div>
-        <button type="submit">Create Blog Post</button>
+        <button className="btn btn-info" type="submit">
+          Create Blog Post
+        </button>
       </form>
     </div>
   );
