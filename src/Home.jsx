@@ -15,6 +15,7 @@ export function Home() {
   const [currentPost, setCurrentPost] = useState({}); //sets current post
 
   const [isPostsShowVisible, setIsPostsShowVisible] = useState(false);
+  const [isSignupVisible, setIsSignupVisible] = useState(false);
 
   const handleShowPost = (post) => {
     setIsPostsShowVisible(true);
@@ -33,18 +34,38 @@ export function Home() {
     });
   };
 
+  const handleCreatePost = (params) => {
+    axios.post("http://localhost:3000/posts.json", params).then((response) => {
+      setPosts([...posts, response.data]);
+    });
+  };
+
+  const handleUpdatePost = (id, params) => {
+    axios.patch(`http://localhost:3000/posts/${id}.json`, params).then((response) => {
+      setPosts(
+        posts.map((post) => {
+          if (post.id === response.data.id) {
+            return response.data;
+          } else {
+            return post;
+          }
+        })
+      );
+    });
+  };
+
   useEffect(handleIndexPosts, []);
   return (
     <div>
       <Signup />
       <Login />
       <LogoutLink />
-      <PostsNew />
+      <PostsNew onPostCreate={handleCreatePost} />
       <PostsIndex posts={posts} onSelectPost={handleShowPost} />
       <Modal show={isPostsShowVisible} onClose={handleHidePost}>
         {/* <h2>{currentPost.title}</h2>
         <h3>{currentPost.body}</h3> */}
-        <PostsShow post={currentPost} />
+        <PostsShow post={currentPost} onUpdatePost={handleUpdatePost} />
       </Modal>
     </div>
   );

@@ -36,7 +36,9 @@ export function Header() {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link disabled">Disabled</a>
+                  <a className="nav-link" href="LogoutLink">
+                    Logout?
+                  </a>
                 </li>
               </ul>
             </div>
