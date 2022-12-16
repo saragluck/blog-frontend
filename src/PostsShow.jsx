@@ -13,6 +13,10 @@ export function PostsShow(props) {
     event.target.reset();
   };
 
+  const handleClick = () => {
+    props.onPostDestroy(props.post);
+  };
+
   return (
     <div id="posts-show">
       <h2>{props.post.title}</h2>
@@ -32,6 +36,7 @@ export function PostsShow(props) {
           Update Blog Post
         </button>
       </form>
+      <button onClick={handleClick}> Delete Blog Post </button>
     </div>
   );
 }
