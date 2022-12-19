@@ -1,9 +1,15 @@
+import { LogoutLink } from "./LogoutLink";
+import { Link } from "react-router-dom";
+
 export function Header() {
   return (
     <div>
       <header>
         <nav className="navbar navbar-expand-lg fixed-top bg-light">
           <div className="container-fluid">
+            <Link to="/">Home</Link>
+            <Link to="/about">About</Link>
+            <Link to="/signup">Signup</Link>
             <a className="navbar-brand" href="#">
               My Blog
             </a>
@@ -36,9 +42,9 @@ export function Header() {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="LogoutLink">
-                    Logout?
-                  </a>
+                  {/* <a className="nav-link">
+                    Logout?</a> */}
+                  <button onClick={LogoutLink}>Log Out</button>
                 </li>
               </ul>
             </div>

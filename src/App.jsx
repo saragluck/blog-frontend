@@ -1,19 +1,25 @@
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { Home } from "./Home";
+import { About } from "./About";
 
 //The app section is the ONLY PART being rendered! This means I have to create all these separate things and then call them in the App function.
 function App() {
   return (
-    <div>
+    <BrowserRouter>
       <Header />
       <br></br>
       <br></br>
       <br></br>
       <br></br>
-      <Home />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/about" element={<About />} />
+        {/* <Route path="/signup" element={<Signup />} /> */}
+      </Routes>
       <Footer />
-    </div>
+    </BrowserRouter>
   );
 }
 
