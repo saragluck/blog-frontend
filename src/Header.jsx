@@ -1,5 +1,6 @@
 import { LogoutLink } from "./LogoutLink";
 import { Link } from "react-router-dom";
+import { Signup } from "./Signup"
 
 export function Header() {
   return (
