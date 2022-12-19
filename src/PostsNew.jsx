@@ -1,10 +1,17 @@
+import axios from "axios";
+
 export function PostsNew(props) {
+  const handleCreatePost = (params) => {
+    axios.post("http://localhost:3000/posts.json", params).then((response) => {
+      console.log(response, "post a post!");
+      window.location.href = "/";
+    });
+  };
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log("New blog post");
     const params = new FormData(event.target);
-    console.log("handleSubmit", params);
-    props.onPostCreate(params);
+    handleCreatePost(params);
     event.target.reset();
   };
   return (

@@ -34,12 +34,6 @@ export function Home() {
     });
   };
 
-  const handleCreatePost = (params) => {
-    axios.post("http://localhost:3000/posts.json", params).then((response) => {
-      setPosts([...posts, response.data]);
-    });
-  };
-
   const handleUpdatePost = (id, params) => {
     axios.patch(`http://localhost:3000/posts/${id}.json`, params).then((response) => {
       setPosts(
@@ -65,10 +59,9 @@ export function Home() {
   useEffect(handleIndexPosts, []);
   return (
     <div>
-      <Signup />
-      <Login />
+      {/* <Signup /> */}
+      {/* <Login /> */}
       <LogoutLink />
-      <PostsNew onPostCreate={handleCreatePost} />
       <PostsIndex posts={posts} onSelectPost={handleShowPost} />
       <Modal show={isPostsShowVisible} onClose={handleHidePost}>
         {/* <h2>{currentPost.title}</h2>

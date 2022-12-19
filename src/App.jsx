@@ -3,6 +3,10 @@ import { Footer } from "./Footer";
 import { Header } from "./Header";
 import { Home } from "./Home";
 import { About } from "./About";
+import { Signup } from "./Signup";
+import { Login } from "./Login";
+import { PostsNew } from "./PostsNew";
+import { PostsIndex } from "./PostsIndex";
 
 //The app section is the ONLY PART being rendered! This means I have to create all these separate things and then call them in the App function.
 function App() {
@@ -16,6 +20,10 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
+        <Route path="/signup" element={<Signup />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/posts/new" element={<PostsNew />} />
+        <Route path="/posts" element={<PostsIndex />} />
         {/* <Route path="/signup" element={<Signup />} /> */}
       </Routes>
       <Footer />

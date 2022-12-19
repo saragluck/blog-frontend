@@ -1,16 +1,22 @@
 import { LogoutLink } from "./LogoutLink";
 import { Link } from "react-router-dom";
-import { Signup } from "./Signup"
+import { Signup } from "./Signup";
+import { useState } from "react";
+import { Modal } from "./Modal";
 
 export function Header() {
+  const [isSignupVisible, setIsSignupVisible] = useState(false);
+  const handleSignupShow = () => {
+    setIsSignupVisible(true);
+  };
+  const handleSignupClose = () => {
+    setIsSignupVisible(false);
+  };
   return (
     <div>
       <header>
         <nav className="navbar navbar-expand-lg fixed-top bg-light">
           <div className="container-fluid">
-            <Link to="/">Home</Link>
-            <Link to="/about">About</Link>
-            <Link to="/signup">Signup</Link>
             <a className="navbar-brand" href="#">
               My Blog
             </a>
@@ -38,19 +44,37 @@ export function Header() {
                   </a>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#posts-new">
-                    New Post
-                  </a>
+                  <Link to="/posts/new">New Post</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/">Home</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/login">Log In</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/about">About</Link>
+                </li>
+                <li className="nav-item">
+                  <Link to="/posts">All Posts</Link>
                 </li>
                 <li className="nav-item">
                   {/* <a className="nav-link">
                     Logout?</a> */}
                   <button onClick={LogoutLink}>Log Out</button>
                 </li>
+                <li className="nav-item">
+                  <a onClick={handleSignupShow} href="#">
+                    Sign Up
+                  </a>
+                </li>
               </ul>
             </div>
           </div>
         </nav>
+        <Modal show={isSignupVisible} onClose={handleSignupClose}>
+          <Signup />
+        </Modal>
       </header>
       <br></br>
       <br></br>
