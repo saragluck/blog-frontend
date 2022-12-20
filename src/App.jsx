@@ -13,10 +13,6 @@ function App() {
   return (
     <BrowserRouter>
       <Header />
-      <br></br>
-      <br></br>
-      <br></br>
-      <br></br>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -24,7 +20,6 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/posts/new" element={<PostsNew />} />
         <Route path="/posts" element={<PostsIndex />} />
-        {/* <Route path="/signup" element={<Signup />} /> */}
       </Routes>
       <Footer />
     </BrowserRouter>

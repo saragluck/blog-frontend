@@ -3,15 +3,62 @@ import { Link } from "react-router-dom";
 import { Signup } from "./Signup";
 import { useState } from "react";
 import { Modal } from "./Modal";
+import axios from "axios";
 
 export function Header() {
   const [isSignupVisible, setIsSignupVisible] = useState(false);
+  const [isLoginVisible, setIsLoginVisible] = useState(false);
+
   const handleSignupShow = () => {
     setIsSignupVisible(true);
   };
   const handleSignupClose = () => {
     setIsSignupVisible(false);
   };
+
+  const handleLoginShow = () => {
+    setIsLoginVisible(true);
+  };
+
+  // const handleLoginClose = () => {
+  //   setIsLoginVisible(false);
+  // };
+
+  const handleLogout = (event) => {
+    event.preventDefault();
+    delete axios.defaults.headers.common["Authorization"];
+    localStorage.removeItem("jwt");
+    window.location.href = "/";
+  };
+
+  //Write conditions for my login/logout to show/hide based on if there is a jwt present in the application storage
+
+  let authenticationLinks; //sets a variable for the links that do stuff like login and logout and signup
+  if (localStorage.jwt === undefined) {
+    authenticationLinks = (
+      <>
+        <li className="nav-item btn btn-outline-danger">
+          <a onClick={handleSignupShow} href="#">
+            Sign Up
+          </a>
+        </li>
+        <li className="nav-item btn btn-outline-danger">
+          <a onClick={handleLoginShow} href="/login">
+            Log In
+          </a>
+        </li>
+      </>
+    );
+  } else {
+    authenticationLinks = (
+      <li className="nav-item btn btn-outline-danger">
+        <a onClick={handleLogout} href="#">
+          Logout
+        </a>
+      </li>
+    );
+  }
+
   return (
     <div>
       <header>
@@ -38,36 +85,27 @@ export function Header() {
                     Home
                   </a>
                 </li>
-                <li className="nav-item">
+                {authenticationLinks}
+                <li className="nav-item btn btn-outline-danger">
                   <a className="nav-link" href="#posts-index">
                     All Posts
                   </a>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item btn btn-outline-danger">
                   <Link to="/posts/new">New Post</Link>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item btn btn-outline-danger">
                   <Link to="/">Home</Link>
                 </li>
-                <li className="nav-item">
-                  <Link to="/login">Log In</Link>
-                </li>
-                <li className="nav-item">
+                <li className="nav-item btn btn-outline-danger">
                   <Link to="/about">About</Link>
                 </li>
-                <li className="nav-item">
+                <li className="nav-item btn btn-outline-danger">
                   <Link to="/posts">All Posts</Link>
                 </li>
-                <li className="nav-item">
-                  {/* <a className="nav-link">
-                    Logout?</a> */}
+                {/* <li>
                   <button onClick={LogoutLink}>Log Out</button>
-                </li>
-                <li className="nav-item">
-                  <a onClick={handleSignupShow} href="#">
-                    Sign Up
-                  </a>
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>

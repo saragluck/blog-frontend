@@ -61,7 +61,7 @@ export function Home() {
     <div>
       {/* <Signup /> */}
       {/* <Login /> */}
-      <LogoutLink />
+      {/* <LogoutLink /> */}
       <PostsIndex posts={posts} onSelectPost={handleShowPost} />
       <Modal show={isPostsShowVisible} onClose={handleHidePost}>
         {/* <h2>{currentPost.title}</h2>

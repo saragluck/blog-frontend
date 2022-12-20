@@ -48,7 +48,7 @@ export function Signup() {
               type="text"
             />
           </div>
-          <small>{20 - name.length} characters remaining</small>
+          <small className="text-danger">{20 - name.length} characters remaining</small>
           <div>
             Email: <input name="email" className="form-control" type="email" />
           </div>
